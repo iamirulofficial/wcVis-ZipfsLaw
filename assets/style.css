@@ -1,8 +1,9 @@
 header {
-    background-color: rgb(216, 245, 150);
+    background-color: rgb(250, 252, 245);
     padding: 10px;
     text-align: center;
     font-size: 15px;
+    width: 1700px;
     color: rgb(29, 27, 27);
   }
 #tblWordCount {
@@ -19,9 +20,10 @@ header {
     background-color: rgb(252, 250, 176);
   }
   footer{
-    background-color: rgb(216, 245, 150);
+    background-color: rgb(244, 245, 241);
     padding: 10px;
     font-size: 15px;
+    width: 1700px;
     color: rgb(29, 27, 27);
   }
   #btnVis {
