@@ -1,0 +1,27 @@
+{
+  "name": "word-count-visualizer-and-zipfs-law-validation",
+  "version": "1.0.0",
+  "description": "word-count-visualizer-and-zipfs-law-validation",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamirulofficial/Word-Count-Visualizer-and-Zipfs-Law-Validation.git"
+  },
+  "keywords": [
+    "word-count-visualizer",
+    "zipf's-law"
+  ],
+  "author": "iamirulofficial",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iamirulofficial/Word-Count-Visualizer-and-Zipfs-Law-Validation/issues"
+  },
+  "homepage": "https://github.com/iamirulofficial/Word-Count-Visualizer-and-Zipfs-Law-Validation#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
