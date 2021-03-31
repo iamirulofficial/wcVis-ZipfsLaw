@@ -1,54 +1,172 @@
-
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
- <!--<meta name="viewport" content="width=device-width, initial-scale=1"> -->
-  <title>WC Visualiser</title>
-  <link rel="stylesheet" href="assets/style.css">
-  <script src="assets/jquery.js"></script>
-  <script src="assets/Chart.js"></script>
-  <script async defer src="assets/script.js"></script>
-</head>
-<body>
-    <header>
-      <style>#forkongithub a{background:#000;color:#fff;text-decoration:none;font-family:arial,sans-serif;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}#forkongithub a:hover{background:#c11;color:#fff;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#fff;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:800px){#forkongithub{position:absolute;display:block;top:0;right:0;width:200px;overflow:hidden;height:200px;z-index:9999;}#forkongithub a{width:200px;position:absolute;top:60px;right:-60px;transform:rotate(45deg);-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);-moz-transform:rotate(45deg);-o-transform:rotate(45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}}</style><span id="forkongithub"><a href="https://github.com/iamirulofficial/wcVis-ZipfsLaw">Fork me on GitHub</a></span>
-        <h1 align="center">Word Count Visualiser</h1>
-        <h4 align="center"><a href="#ref">Reference</a></h4>
-    </header>
-    <br>
-  <table border="1" cellpadding="2" id="tblWordCount"></table>
-  <center>
-  <div id="contents">
-    <label for="inputText">Paste Text Here(More than 135 words)</label>
-    <br>
-    <textarea id="inputText" cols="130" rows="20"></textarea>
-    <br><br>
-    <button id="btnVis">Visualise</button>
-    <br><br>
-    <p style="color: red;">Word Frequency <span style="color: blue;">Zipf's_law</span> </p><br>
-    <canvas width="600" height="600" id="cnvWcChart" ></canvas>
-    <br><br>
+<html lang="en"><head>
 
-  </div></center>
-  <footer id="ref">
-    <h2>Reference:</h2>
-    <ul>
-        <li><a href="https://en.wikipedia.org/wiki/Zipf%27s_law">Zipf's Law Wikipedia</a></li>
-        <li><a href="https://nlp.stanford.edu/IR-book/html/htmledition/zipfs-law-modeling-the-distribution-of-terms-1.html">
-            Zipf's law: Modeling the distribution of terms - Stanford NLP</a></li>
-        <li><a href="https://explore.precisionlender.com/blog/zipf-s-law-and-your-lenders">Zipf’s Law and Your Lenders
-        </a></li>
-      </ul>
-    <h4 align="center">Made with ❤  by "Amirul"</h4>
-    <table cellspacing="0" cellpadding="0" border="0" align="center">
-        <tr>
-           <td style="font-family: Arial;padding: 0 4px 0 0;"><a target="_blank" class="social_link" href="https://github.com/iamirulofficial"><img alt="" style="width:21px;" width="21" src="https://raw.githubusercontent.com/github/explore/78df643247d429f6cc873026c0622819ad797942/topics/github/github.png"></a></td>
-           <td style="font-family: Arial;padding: 0 4px 0 0;"><a target="_blank" class="social_link" href="https://twitter.com/aadicodes"><img alt="" style="width:21px;" width="21" src="https://img.mysignature.io/s/v3/0/d/a/0da729f9-529f-5936-b465-8d7d19f3966c.png"></a></td>
-           <td style="font-family: Arial;padding: 0 4px 0 0;"><a target="_blank" class="social_link" href="https://www.linkedin.com/in/amirul-islam-90a25617b/"><img alt="" style="width:21px;" width="21" src="https://img.mysignature.io/s/v3/c/b/d/cbd01dd8-9e27-5cde-9822-51483a5e8639.png"></a></td>
-           <td style="font-family: Arial;padding: 0 4px 0 0;"><a target="_blank" class="social_link" href="https://www.instagram.com/itsme_aadii/"><img alt="" style="width:21px;" width="21" src="https://img.mysignature.io/s/v3/4/a/d/4adbabaf-834f-5eae-974a-8cac23da3adf.png"></a></td>
-        </tr>
-     </table>
-  </footer>  
-</body>
-</html>
+    <meta charset="UTF-8">
+    <title>Word Count Visualiser | iamirulofficial</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="assets/jquery.js"></script>
+    <script src="assets/Chart.js"></script>
+    <script async defer src="assets/script.js"></script>
+    <!-- <link rel="stylesheet" href="assets/style.css"> -->
+
+    <script>
+        window.console = window.console || function(t) {};
+    </script>
+
+    <script>
+        if (document.location.search.match(/type=embed/gi)) {
+            window.parent.postMessage("resize", "*");
+        }
+    </script>
+
+
+</head>
+
+<body translate="no" data-new-gr-c-s-check-loaded="14.990.0" data-gr-ext-installed="">
+<nav class="navbar navbar-expand-lg navbar-mainbg">
+    <a class="navbar-brand navbar-logo" href="#">Word Count Visualiser</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars text-white"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <div class="hori-selector" style="top: 0px; left: 748.4px; height: 62.4px; width: 155.95px;"><div class="left"></div><div class="right"></div></div>
+            <li class="nav-item active">
+                <a class="nav-link" href="javascript:void(0);"><i class="fas fa-tachometer-alt"></i>Visualise</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0);"><i class="far fa-address-book"></i>Reference</a>
+            </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0);"><i class="far fa-clone"></i>Components</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0);"><i class="far fa-calendar-alt"></i>Calendar</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0);"><i class="far fa-chart-bar"></i>Charts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0);"><i class="far fa-copy"></i>Documents</a>
+            </li> -->
+        </ul>
+    </div>
+</nav>
+
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-6">
+            <center><label for="inputText">Paste Text Here(More than 135 words)</label>
+              <br>
+              <textarea id="inputText" cols="70" rows="21"></textarea><br>
+              <button id="btnVis">Visualise</button>
+            </center>
+
+		</div>
+		<div class="col-md-6">
+            <center><p style="color: red;">Word Frequency &nbsp; <span style="color: blue;">Zipf's_law</span> </p>
+              <canvas width="580" height="510" id="cnvWcChart" style="background-color: rgb(252, 250, 176);"></canvas></center>
+		</div>
+	</div>
+</div><br><br>
+
+<div class="container-fluid">
+  <center>
+        
+    <button data-toggle="collapse" data-target="#demo">See Word Count Table</button>
+
+    <div id="demo" class="collapse">
+        <table border="1" cellpadding="2" id="tblWordCount"></table>
+    </div>
+    
+  </center>
+</div>
+
+
+
+<!-- <div class="container-fluid">
+    <div class="row content">
+      <div class="col-sm-3">
+        <table border="1" cellpadding="2" id="tblWordCount"></table>
+      </div>
+  
+      <div class="col-sm-9">
+        
+            <div id="contents">
+              <label for="inputText">Paste Text Here(More than 135 words)</label>
+              <br>
+              <textarea id="inputText" cols="130" rows="20"></textarea>
+              <br><br>
+              <button id="btnVis">Visualise</button>
+              <br><br>
+              <p style="color: red;">Word Frequency <span style="color: blue;">Zipf's_law</span> </p><br>
+              <canvas width="600" height="600" id="cnvWcChart" ></canvas>
+              <br><br>
+          
+            </div>
+      </div>
+    </div>
+  </div> -->
+
+
+  
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script id="rendered-js">
+    // ---------Responsive-navbar-active-animation-----------
+    function test() {
+        var tabsNewAnim = $('#navbarSupportedContent');
+        var selectorNewAnim = $('#navbarSupportedContent').find('li').length;
+        var activeItemNewAnim = tabsNewAnim.find('.active');
+        var activeWidthNewAnimHeight = activeItemNewAnim.innerHeight();
+        var activeWidthNewAnimWidth = activeItemNewAnim.innerWidth();
+        var itemPosNewAnimTop = activeItemNewAnim.position();
+        var itemPosNewAnimLeft = activeItemNewAnim.position();
+        $(".hori-selector").css({
+            "top": itemPosNewAnimTop.top + "px",
+            "left": itemPosNewAnimLeft.left + "px",
+            "height": activeWidthNewAnimHeight + "px",
+            "width": activeWidthNewAnimWidth + "px" });
+
+        $("#navbarSupportedContent").on("click", "li", function (e) {
+            $('#navbarSupportedContent ul li').removeClass("active");
+            $(this).addClass('active');
+            var activeWidthNewAnimHeight = $(this).innerHeight();
+            var activeWidthNewAnimWidth = $(this).innerWidth();
+            var itemPosNewAnimTop = $(this).position();
+            var itemPosNewAnimLeft = $(this).position();
+            $(".hori-selector").css({
+                "top": itemPosNewAnimTop.top + "px",
+                "left": itemPosNewAnimLeft.left + "px",
+                "height": activeWidthNewAnimHeight + "px",
+                "width": activeWidthNewAnimWidth + "px" });
+
+        });
+    }
+    $(document).ready(function () {
+        setTimeout(function () {test();});
+    });
+    $(window).on('resize', function () {
+        setTimeout(function () {test();}, 500);
+    });
+    $(".navbar-toggler").click(function () {
+        setTimeout(function () {test();});
+    });
+    //# sourceURL=pen.js
+</script>
+
+
+
+
+
+
+
+</body></html>
