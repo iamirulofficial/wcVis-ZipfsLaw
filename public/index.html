@@ -1,252 +1,194 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-
-    <meta charset="UTF-8">
-    <title>Word Count Visualiser | iamirulofficial</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
-    <link rel="stylesheet" href="style.css">
-    <script src="assets/jquery.js"></script>
-    <script src="assets/Chart.js"></script>
-    <script async defer src="assets/script.js"></script>
-    <!-- <link rel="stylesheet" href="assets/style.css"> -->
-
-    <script>
-        window.console = window.console || function(t) {};
-    </script>
-
-    <script>
-        if (document.location.search.match(/type=embed/gi)) {
-            window.parent.postMessage("resize", "*");
-        }
-    </script>
-
-
-</head>
-
-<body translate="no" data-new-gr-c-s-check-loaded="14.990.0" data-gr-ext-installed="">
-<nav class="navbar navbar-expand-lg navbar-mainbg">
-    <a class="navbar-brand navbar-logo" href="#">Word Count Visualiser</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fas fa-bars text-white"></i>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-            <div class="hori-selector" style="top: 0px; left: 748.4px; height: 62.4px; width: 155.95px;"><div class="left"></div><div class="right"></div></div>
-            <li class="nav-item active">
-                <a class="nav-link" href="javascript:void(0);"><i class="fas fa-tachometer-alt"></i>Visualise</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0);"><i class="far fa-address-book"></i>Reference</a>
-            </li>
-            <!-- <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0);"><i class="far fa-clone"></i>Components</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0);"><i class="far fa-calendar-alt"></i>Calendar</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0);"><i class="far fa-chart-bar"></i>Charts</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0);"><i class="far fa-copy"></i>Documents</a>
-            </li> -->
-        </ul>
-    </div>
-</nav>
-
-
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-6">
-            <center><label for="inputText">Paste Text Here(More than 135 words)</label>
-              <br>
-              <textarea id="inputText" cols="70" rows="21"></textarea><br>
-              <button class="btn btn-info" id="btnVis">Visualise</button>
-            </center>
-
-		</div>
-		<div class="col-md-6">
-            <center><p style="color: red;">Word Frequency &nbsp; <span style="color: blue;">Zipf's_law</span> </p>
-              <canvas width="580" height="510" id="cnvWcChart" style="background-color: rgb(252, 250, 176);"></canvas></center>
-		</div>
-	</div>
-</div><br><br>
-
-<div class="container-fluid">
-  <center>
-        
-    <button type="button" class="btn btn-warning border-primary" data-toggle="collapse" data-target="#demo">See Word Count Table &nbsp; <i class="fas fa-arrow-down"></i></button>
-
-    <div id="demo" class="collapse" style="align-items: center;">
-        <br/>
-        <center>
-        <table border="1" cellpadding="2" id="tblWordCount"></table></center>
-    </div>
-    
-  </center>
-</div>
-
-
-
-<!-- <div class="container-fluid">
-    <div class="row content">
-      <div class="col-sm-3">
-        <table border="1" cellpadding="2" id="tblWordCount"></table>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <title>Word Count Visualiser | iamirulofficial</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
+      <link rel="stylesheet" href="style.css">
+      <script src="assets/jquery.js"></script>
+      <script src="assets/Chart.js"></script>
+      <script async defer src="assets/script.js"></script>
+      <!-- <link rel="stylesheet" href="assets/style.css"> -->
+      <script>
+         window.console = window.console || function(t) {};
+      </script>
+      <script>
+         if (document.location.search.match(/type=embed/gi)) {
+             window.parent.postMessage("resize", "*");
+         }
+      </script>
+   </head>
+   <body translate="no" data-new-gr-c-s-check-loaded="14.990.0" data-gr-ext-installed="">
+      <nav class="navbar navbar-expand-lg navbar-mainbg">
+         <a class="navbar-brand navbar-logo" href="#">Word Count Visualiser </a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <i class="fas fa-bars text-white"></i>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+               <div class="hori-selector" style="top: 0px; left: 748.4px; height: 62.4px; width: 155.95px;">
+                  <div class="left"></div>
+                  <div class="right"></div>
+               </div>
+               <li class="nav-item active">
+                  <a class="nav-link" href="javascript:void(0);"><i class="fas fa-tachometer-alt"></i>Visualise</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="#ref-t"><i class="far fa-address-book"></i>Reference</a>
+               </li>
+               <!-- <li class="nav-item">
+                  <a class="nav-link" href="javascript:void(0);"><i class="far fa-clone"></i>Components</a>
+                  </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="javascript:void(0);"><i class="far fa-calendar-alt"></i>Calendar</a>
+                  </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="javascript:void(0);"><i class="far fa-chart-bar"></i>Charts</a>
+                  </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="javascript:void(0);"><i class="far fa-copy"></i>Documents</a>
+                  </li> -->
+            </ul>
+         </div>
+      </nav>
+      <br>
+      <div class="container-fluid">
+        <div class="col-md-12">
+          <p>Zipf's law: Modeling the distribution of terms, It shows how should the terms/words of Meaningful large text should distribute.
+          First paste some <a href="https://www.lipsum.com/">Random Text (Lorem) </a> then paste some <a href="https://www.newyorker.com/humor/daily-shouts/a-short-story-written-with-thought-to-text-technology">Story</a> to see the difference </p>
+        </div>
       </div>
-  
-      <div class="col-sm-9">
-        
-            <div id="contents">
-              <label for="inputText">Paste Text Here(More than 135 words)</label>
-              <br>
-              <textarea id="inputText" cols="130" rows="20"></textarea>
-              <br><br>
-              <button id="btnVis">Visualise</button>
-              <br><br>
-              <p style="color: red;">Word Frequency <span style="color: blue;">Zipf's_law</span> </p><br>
-              <canvas width="600" height="600" id="cnvWcChart" ></canvas>
-              <br><br>
-          
+      <div class="container-fluid">
+         <div class="row">
+            <div class="col-md-6">
+               <center><label for="inputText">Paste Text Here(More than 135 words)</label>
+                  <br>
+                  <textarea id="inputText" style="height: 516px; width: 100%;"></textarea><br>
+                  <button class="btn btn-info" id="btnVis">Visualise</button>
+               </center>
             </div>
+            <div class="col-md-6" style="padding: 30px;">
+               <!-- <center><p style="color: red;">Word Frequency &nbsp; <span style="color: blue;">Zipf's_law</span> </p> -->
+               <canvas style="width: 100%; height: 100%; background-color: rgb(252, 250, 176); border: green 1px solid;" id="cnvWcChart"></canvas>
+               </center>
+            </div>
+         </div>
       </div>
-    </div>
-  </div> -->
-
-  <!-- Footer -->
-<footer class="page-footer font-small blue pt-4">
-
-    <!-- Footer Links -->
-    <div class="container-fluid text-center text-md-left">
-  
-      <!-- Grid row -->
-      <div class="row">
-  
-        <!-- Grid column -->
-        <div class="col-md-6 mt-md-0 mt-3">
-  
-          <!-- Content -->
-          <h5 class="text-uppercase">Footer Content</h5>
-          <p>Here you can use rows and columns to organize your footer content.</p>
-  
-        </div>
-        <!-- Grid column -->
-  
-        <hr class="clearfix w-100 d-md-none pb-3">
-  
-        <!-- Grid column -->
-        <div class="col-md-3 mb-md-0 mb-3">
-  
-          <!-- Links -->
-          <h5 class="text-uppercase">Links</h5>
-  
-          <ul class="list-unstyled">
-            <li>
-              <a href="#!">Link 1</a>
-            </li>
-            <li>
-              <a href="#!">Link 2</a>
-            </li>
-            <li>
-              <a href="#!">Link 3</a>
-            </li>
-            <li>
-              <a href="#!">Link 4</a>
-            </li>
-          </ul>
-  
-        </div>
-        <!-- Grid column -->
-  
-        <!-- Grid column -->
-        <div class="col-md-3 mb-md-0 mb-3">
-  
-          <!-- Links -->
-          <h5 class="text-uppercase">Links</h5>
-  
-          <ul class="list-unstyled">
-            <li>
-              <a href="#!">Link 1</a>
-            </li>
-            <li>
-              <a href="#!">Link 2</a>
-            </li>
-            <li>
-              <a href="#!">Link 3</a>
-            </li>
-            <li>
-              <a href="#!">Link 4</a>
-            </li>
-          </ul>
-  
-        </div>
-        <!-- Grid column -->
-  
-      </div>
-      <!-- Grid row -->
-  
-    </div>
-    <!-- Footer Links -->
-  
-  
-  </footer>
-  <!-- Footer -->
-
-  
-
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script id="rendered-js">
-    // ---------Responsive-navbar-active-animation-----------
-    function test() {
-        var tabsNewAnim = $('#navbarSupportedContent');
-        var selectorNewAnim = $('#navbarSupportedContent').find('li').length;
-        var activeItemNewAnim = tabsNewAnim.find('.active');
-        var activeWidthNewAnimHeight = activeItemNewAnim.innerHeight();
-        var activeWidthNewAnimWidth = activeItemNewAnim.innerWidth();
-        var itemPosNewAnimTop = activeItemNewAnim.position();
-        var itemPosNewAnimLeft = activeItemNewAnim.position();
-        $(".hori-selector").css({
-            "top": itemPosNewAnimTop.top + "px",
-            "left": itemPosNewAnimLeft.left + "px",
-            "height": activeWidthNewAnimHeight + "px",
-            "width": activeWidthNewAnimWidth + "px" });
-
-        $("#navbarSupportedContent").on("click", "li", function (e) {
-            $('#navbarSupportedContent ul li').removeClass("active");
-            $(this).addClass('active');
-            var activeWidthNewAnimHeight = $(this).innerHeight();
-            var activeWidthNewAnimWidth = $(this).innerWidth();
-            var itemPosNewAnimTop = $(this).position();
-            var itemPosNewAnimLeft = $(this).position();
-            $(".hori-selector").css({
-                "top": itemPosNewAnimTop.top + "px",
-                "left": itemPosNewAnimLeft.left + "px",
-                "height": activeWidthNewAnimHeight + "px",
-                "width": activeWidthNewAnimWidth + "px" });
-
-        });
-    }
-    $(document).ready(function () {
-        setTimeout(function () {test();});
-    });
-    $(window).on('resize', function () {
-        setTimeout(function () {test();}, 500);
-    });
-    $(".navbar-toggler").click(function () {
-        setTimeout(function () {test();});
-    });
-    //# sourceURL=pen.js
-</script>
-
-
-
-
-
-
-
-</body></html>
+      <br><br>
+      <div class="container-fluid">
+         <center>
+            <button type="button" class="btn btn-warning border-primary" data-toggle="collapse" data-target="#demo">See Word Count Table &nbsp; <i class="fas fa-arrow-down"></i></button>
+            <div id="demo" class="collapse" style="align-items: center;">
+               <br/>
+               <center>
+                  <table border="1" cellpadding="2" id="tblWordCount"></table>
+               </center>
+            </div>
+         </center>
+      </div><br>
+      <!-- <div class="container-fluid">
+         <div class="row content">
+           <div class="col-sm-3">
+             <table border="1" cellpadding="2" id="tblWordCount"></table>
+           </div>
+         
+           <div class="col-sm-9">
+             
+                 <div id="contents">
+                   <label for="inputText">Paste Text Here(More than 135 words)</label>
+                   <br>
+                   <textarea id="inputText" cols="130" rows="20"></textarea>
+                   <br><br>
+                   <button id="btnVis">Visualise</button>
+                   <br><br>
+                   <p style="color: red;">Word Frequency <span style="color: blue;">Zipf's_law</span> </p><br>
+                   <canvas width="600" height="600" id="cnvWcChart" ></canvas>
+                   <br><br>
+               
+                 </div>
+           </div>
+         </div>
+         </div> -->
+      <!-- Footer -->
+      <footer class="page-footer font-small pt-4">
+         <!-- Footer Links -->
+         <div id="ref-t" class="container-fluid text-center text-md-left">
+            <!-- Grid row -->
+            <div class="row">
+               <!-- Grid column -->
+               <div class="col-md-6 mt-md-0 mt-3">
+                  <!-- Content -->
+                  <h5><a href="https://github.com/iamirulofficial">Made with ❤  by "Amirul"</a></h5>
+               </div>
+               <!-- Grid column -->
+               <hr class="clearfix w-100 d-md-none pb-3">
+               <!-- Grid column -->
+               <div class="col-md-6 mb-md-0 mb-3">
+                  <!-- Links -->
+                  <h5 class="text-uppercase">Reference</h5>
+                  <ul class="list-unstyled">
+                     <li><a href="https://en.wikipedia.org/wiki/Zipf%27s_law">Zipf's Law Wikipedia</a></li>
+                     <li><a href="https://nlp.stanford.edu/IR-book/html/htmledition/zipfs-law-modeling-the-distribution-of-terms-1.html">
+                        Zipf's law: Modeling the distribution of terms - Stanford NLP</a>
+                     </li>
+                     <li><a href="https://explore.precisionlender.com/blog/zipf-s-law-and-your-lenders">Zipf’s Law and Your Lenders
+                        </a>
+                     </li>
+                  </ul>
+               </div>
+               <!-- Grid column -->
+            </div>
+            <!-- Grid row -->
+         </div>
+         <!-- Footer Links -->
+      </footer>
+      <!-- Footer -->
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+      <script id="rendered-js">
+         // ---------Responsive-navbar-active-animation-----------
+         function test() {
+             var tabsNewAnim = $('#navbarSupportedContent');
+             var selectorNewAnim = $('#navbarSupportedContent').find('li').length;
+             var activeItemNewAnim = tabsNewAnim.find('.active');
+             var activeWidthNewAnimHeight = activeItemNewAnim.innerHeight();
+             var activeWidthNewAnimWidth = activeItemNewAnim.innerWidth();
+             var itemPosNewAnimTop = activeItemNewAnim.position();
+             var itemPosNewAnimLeft = activeItemNewAnim.position();
+             $(".hori-selector").css({
+                 "top": itemPosNewAnimTop.top + "px",
+                 "left": itemPosNewAnimLeft.left + "px",
+                 "height": activeWidthNewAnimHeight + "px",
+                 "width": activeWidthNewAnimWidth + "px" });
+         
+             $("#navbarSupportedContent").on("click", "li", function (e) {
+                 $('#navbarSupportedContent ul li').removeClass("active");
+                 $(this).addClass('active');
+                 var activeWidthNewAnimHeight = $(this).innerHeight();
+                 var activeWidthNewAnimWidth = $(this).innerWidth();
+                 var itemPosNewAnimTop = $(this).position();
+                 var itemPosNewAnimLeft = $(this).position();
+                 $(".hori-selector").css({
+                     "top": itemPosNewAnimTop.top + "px",
+                     "left": itemPosNewAnimLeft.left + "px",
+                     "height": activeWidthNewAnimHeight + "px",
+                     "width": activeWidthNewAnimWidth + "px" });
+         
+             });
+         }
+         $(document).ready(function () {
+             setTimeout(function () {test();});
+         });
+         $(window).on('resize', function () {
+             setTimeout(function () {test();}, 500);
+         });
+         $(".navbar-toggler").click(function () {
+             setTimeout(function () {test();});
+         });
+         //# sourceURL=pen.js
+      </script>
+   </body>
+</html>
